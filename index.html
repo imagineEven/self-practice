@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>想象力世界</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<style>
+  .box {
+    position: relative;
+    height: 400px;
+    overflow-y: auto;
+    /* width: 200px; */
+    /* background: red; */
+  }
+  .inner {
+    height: 1000px;
+    background: goldenrod;
+    color: red;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="box">
+    <div class="inner">
+      11
+      22
+      <br>
+      33
+      44
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+// (function() {
+//   let script = document.createElement('script');
+//   script.src = './'
+// })
+
+
+(function(){
+  // console.log('document.documentElement.clientHeight',document.documentElement.clientHeight);
+  // console.log('document.body.scrollHeight ', document.documentElement.scrollHeight );
+  // console.log(navigator.userAgent);
+
+  // 111
+  // let offsetHeight = document.querySelector('.inner').offsetHeight;
+  // let clientHeight = document.querySelector('.inner').clientHeight;
+  // let scrollHeight = document.querySelector('.box').scrollHeight;
+  // console.log('scrollHeight', scrollHeight);
+  // console.log('clientHeight', clientHeight);
+  // console.log('offsetHeight', offsetHeight);
+  // window.onresize = function() {
+  //   console.log(111);
+  // }
+  
+
+  // 111111
+  let inner = document.querySelector('.inner');
+  let box = document.querySelector('.box');
+  // console.log('scrollHeight', scrollHeight);
+  // 相对于视窗的位置；
+  let rectObject = inner.getBoundingClientRect();
+  document.onmousewheel = wheel;
+
+  function wheel() {
+    // 1. （必须有定位）相对于父元素的位置
+    // 2. 如果父元素没有定位，就相对于视窗
+    // 3. 不会随着滚动条滚动，而发生变化
+    console.log('offsetTop', inner.offsetTop);
+
+    // 只是纯属的相对于父元素
+    console.log('clientTop', inner.clientTop);
+
+    // 永远相对于视窗；
+    console.log('getBoundingClientRectTop', rectObject.top);
+    // console.log(inner.clientTop());
+
+    // scrollTop是指某个可滚动区块向下滚动的距离
+    // box元素top的值，会跟着滚动而变；
+    // 内部元素滚动的距离
+    console.log('box-scrollTop', box.scrollTop);
+    // inner元素top的值，不会变；
+    console.log('inner-scrollTop', inner.scrollTop);
+
+
+  }
+  
+  document.addEventListener("onscroll", function (e) {
+    console.log('我开始滚动了2');
+  })
+
+})()
+</script>
+</html>
